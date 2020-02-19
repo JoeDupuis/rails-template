@@ -13,9 +13,21 @@ def apply_template!
   install_dotenv
   install_passenger
   install_capistrano
+  install_sentry
   install_misc
 end
 
+
+def install_sentry
+  gem "sentry-raven"
+  sentry_dsn = ask("Enter a sentry dsn")
+  sentry_dsn = 'http://public@example.com/project-id' if sentry_dsn.empty?
+  initializer "sentry.rb", <<-EOS
+    Raven.configure do |config|
+      config.dsn = '#{sentry_dsn}'
+    end
+  EOS
+end
 def install_capistrano
   gem 'capistrano', require: false
   gem "capistrano-rails", require: false
