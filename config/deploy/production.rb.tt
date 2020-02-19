@@ -1,0 +1,3 @@
+server "web.server.com", user: "<%= @passenger_user %>", roles: %w{app db web}
+
+set :branch, 'master'
