@@ -11,5 +11,5 @@ let
   };
 
 in {
-  <%= @app_name.dasherize %>-db = libvirt;
+  <%= app_name.dasherize %>-db = libvirt;
 }

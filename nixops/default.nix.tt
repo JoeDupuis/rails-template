@@ -6,8 +6,7 @@
   dbSuperAdmin ? true
 } :
 {
-
-  <%= @app_name.dasherize %>-db = {config, pkgs, lib, ...} : {
+  <%= app_name.dasherize %>-db = {config, pkgs, lib, ...} : {
     environment.systemPackages = with pkgs; [
       htop
       tmux
