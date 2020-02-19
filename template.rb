@@ -7,6 +7,12 @@ def apply_template!
   install_nixops
   intial_commit
   install_sidekiq
+  install_dotenv
+end
+
+def install_dotenv
+  gem "dotenv-rails"
+  template ".env.development.tt"
 end
 
 def install_sidekiq
