@@ -9,6 +9,9 @@ def apply_template!
   install_sidekiq
   install_dotenv
   install_passenger
+  install_misc
+end
+
 def install_passenger
   gem "passenger", require: false, group: [:production]
   @passenger_user = app_name.camelize.downcase
@@ -16,6 +19,9 @@ def install_passenger
   template "Passengerfile.json.tt", { passenger_user: @passenger_user}
 end
 
+def install_misc
+  gem "standard", group: [:development, :test]
+  gem "irbtools", require: "irbtools/binding"
 end
 
 def install_dotenv
