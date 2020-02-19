@@ -21,7 +21,7 @@ end
 
 def install_misc
   gem "standard", group: [:development, :test]
-  gem "irbtools", require: "irbtools/binding"
+  #gem "irbtools", require: "irbtools/binding", group: [:development]
 end
 
 def install_dotenv
