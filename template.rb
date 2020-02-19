@@ -2,6 +2,10 @@
 def apply_template!
   add_template_repository_to_source_path
 
+  copy_templates
+  intial_commit
+end
+
 def intial_commit
   after_bundle do
     git :init
@@ -10,6 +14,7 @@ def intial_commit
   end
 end
 
+def copy_templates
   copy_file "lib/templates/rails/scaffold_controller/controller.rb.tt"
 end
 
