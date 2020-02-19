@@ -48,6 +48,7 @@ def install_sentry
     end
   EOS
 end
+
 def install_capistrano
   gem 'capistrano', require: false
   gem "capistrano-rails", require: false
@@ -66,12 +67,17 @@ def install_capistrano
   #   run "bundle exec cap install"
   # end
 end
+
 def install_passenger
   gem "passenger", require: false, group: [:production]
+  template "Passengerfile.json.tt"
 end
 
 def install_misc
   gem "standard", group: [:development, :test]
+  gem "niceql", group: [:development, :test]
+  #gem "scenic"
+  #gem "fx"
   #gem "irbtools", require: "irbtools/binding", group: [:development]
 end
 
