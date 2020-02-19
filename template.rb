@@ -2,6 +2,9 @@
 def apply_template!
   add_template_repository_to_source_path
 
+  @passenger_user = app_name.camelize.downcase
+  @passenger_user = ask("Enter the username running passenger") if no? %{Do you want to keep "#{@passenger_user}" as the username running passenger?}
+
   copy_templates
   install_nix
   install_nixops
@@ -14,9 +17,6 @@ end
 
 def install_passenger
   gem "passenger", require: false, group: [:production]
-  @passenger_user = app_name.camelize.downcase
-  @passenger_user = ask("Enter the username running passenger") if no? "Do you want to keep #{@passenger_user} as the username running passenger?"
-  template "Passengerfile.json.tt", { passenger_user: @passenger_user}
 end
 
 def install_misc
