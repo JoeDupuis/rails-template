@@ -1,6 +1,15 @@
 
 def apply_template!
   add_template_repository_to_source_path
+
+def intial_commit
+  after_bundle do
+    git :init
+    git add: "."
+    git commit: '-m "Initial commit"'
+  end
+end
+
   copy_file "lib/templates/rails/scaffold_controller/controller.rb.tt"
 end
 
