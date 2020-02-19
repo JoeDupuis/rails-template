@@ -12,9 +12,28 @@ def apply_template!
   install_sidekiq
   install_dotenv
   install_passenger
+  install_capistrano
   install_misc
 end
 
+def install_capistrano
+  gem 'capistrano', require: false
+  gem "capistrano-rails", require: false
+  gem 'capistrano-env', require: false
+  gem 'capistrano-master-key', github: 'JoeDupuis/capistrano-master-key',require: false
+  gem 'capistrano-passenger', require: false
+  gem 'capistrano-sidekiq', require: false
+  copy_file "Capfile"
+  FileUtils.mkdir_p Rails.root.join('lib', 'capistrano', 'tasks')
+  FileUtils.touch(Rails.root.join('lib', 'capistrano', 'tasks', '.keep'))
+  template "config/deploy.rb.tt"
+  template "config/deploy/staging.rb.tt"
+  template "config/deploy/production.rb.tt"
+
+  # after_bundle do
+  #   run "bundle exec cap install"
+  # end
+end
 def install_passenger
   gem "passenger", require: false, group: [:production]
 end
