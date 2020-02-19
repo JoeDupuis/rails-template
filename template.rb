@@ -15,9 +15,24 @@ def apply_template!
   install_capistrano
   install_sentry
   install_redis
+  install_devise
   install_misc
 end
 
+def install_devise
+  gem 'devise'
+  gem 'geocoder'
+  gem 'authtrail'
+  gem 'ahoy_matey'
+
+  inject_into_file 'config/environments/development.rb', after: 'config.active_storage.service = :local' do <<EOS
+
+
+  config.action_mailer.smtp_settings = {address: "localhost", port: 1025}
+  config.action_mailer.default_url_options = {host: "localhost", port: 3000}
+EOS
+  end
+end
 
 def install_redis
   gem 'redis', '~> 4.0'
