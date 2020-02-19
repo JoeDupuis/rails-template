@@ -3,7 +3,21 @@ def apply_template!
   add_template_repository_to_source_path
 
   copy_templates
+  install_nix
+  install_nixops
   intial_commit
+end
+
+
+def install_nix
+  copy_file "shell.nix"
+  directory "nix"
+end
+
+def install_nixops
+  template "nixops/default.nix.tt"
+  template "nixops/provider/libvirtd.nix.tt"
+  template "nixops/provider/vbox.nix.tt"
 end
 
 def intial_commit
