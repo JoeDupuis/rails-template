@@ -14,9 +14,14 @@ def apply_template!
   install_passenger
   install_capistrano
   install_sentry
+  install_redis
   install_misc
 end
 
+
+def install_redis
+  gem 'redis', '~> 4.0'
+end
 
 def install_sentry
   gem "sentry-raven"
