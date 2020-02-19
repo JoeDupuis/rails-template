@@ -1,0 +1,5 @@
+{
+  // Updating this config require a restart of the systemd unit.
+	"daemonize": false,
+	"user": "<%= @passenger_user %>"
+}
