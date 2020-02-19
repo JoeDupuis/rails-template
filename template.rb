@@ -57,8 +57,8 @@ def install_capistrano
   gem 'capistrano-passenger', require: false
   gem 'capistrano-sidekiq', require: false
   copy_file "Capfile"
-  FileUtils.mkdir_p Rails.root.join('lib', 'capistrano', 'tasks')
-  FileUtils.touch(Rails.root.join('lib', 'capistrano', 'tasks', '.keep'))
+  FileUtils.mkdir_p 'lib/capistrano/tasks'
+  FileUtils.touch 'lib/capistrano/tasks/.keep'
   template "config/deploy.rb.tt"
   template "config/deploy/staging.rb.tt"
   template "config/deploy/production.rb.tt"
