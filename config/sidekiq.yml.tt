@@ -1,0 +1,6 @@
+:concurrency: 5
+:queues:
+  - <%= @app_name.underscore %>_default
+  - <%= @app_name.underscore %>_mailers
+  - <%= @app_name.underscore %>_active_storage_analysis
+  - <%= @app_name.underscore %>_active_storage_purge

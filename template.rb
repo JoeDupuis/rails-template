@@ -6,6 +6,16 @@ def apply_template!
   install_nix
   install_nixops
   intial_commit
+  install_sidekiq
+end
+
+def install_sidekiq
+  gem "sidekiq"
+  initializer "sidekiq.rb", <<-EOS
+    Rails.application.config.active_job.queue_adapter     = :sidekiq
+    Rails.application.config.active_job.queue_name_prefix = "#{@app_name.underscore}"
+  EOS
+  template "config/sidekiq.yml.tt"
 end
 
 
