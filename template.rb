@@ -67,6 +67,7 @@ def install_devise
     generate "devise:install"
   end
 
+  push_warning "Change config.mailer_sender in devise initializer."
   push_warning "Do not forget to change DEFAULT_URL_OPTIONS_HOST in .env.production"
   push_warning "Ensure you have defined root_url to *something* in your config/routes.rb."
 end
