@@ -52,8 +52,15 @@ def install_devise
   end
 
 
+  template "app/views/layouts/application.html.erb.tt"
+  template "app/helper/application_helper.rb.tt"
 
+  after_bundle do
+    generate "devise:install"
   end
+
+  push_warning "Do not forget to change DEFAULT_URL_OPTIONS_HOST in .env.production"
+  push_warning "Ensure you have defined root_url to *something* in your config/routes.rb."
 end
 
 def install_redis
