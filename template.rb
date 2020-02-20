@@ -69,13 +69,13 @@ end
 
 def install_sentry
   gem "sentry-raven"
-  sentry_dsn = ask("Enter a sentry dsn")
-  sentry_dsn = 'http://public@example.com/project-id' if sentry_dsn.empty?
   initializer "sentry.rb", <<-EOS
     Raven.configure do |config|
-      config.dsn = '#{sentry_dsn}'
+      config.dsn = ENV['SENTRY_DSN']
     end
   EOS
+
+  push_warning "Do not forget to change SENTRY_DSN in .env"
 end
 
 def install_capistrano
