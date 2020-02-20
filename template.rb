@@ -112,7 +112,9 @@ end
 
 def install_dotenv
   gem "dotenv-rails"
+  template ".env.tt"
   template ".env.development.tt"
+  template ".env.production.tt"
 end
 
 def install_sidekiq
