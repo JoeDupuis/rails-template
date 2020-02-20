@@ -43,13 +43,16 @@ def install_devise
   gem 'geocoder'
   gem 'authtrail'
   gem 'ahoy_matey'
+  inject_into_file 'config/environments/production.rb', after: 'config.i18n.fallbacks = true' do
+    "\n\n  config.action_mailer.default_url_options = { host: ENV['DEFAULT_URL_OPTIONS_HOST'] }"
+  end
 
-  inject_into_file 'config/environments/development.rb', after: 'config.active_storage.service = :local' do <<EOS
+  inject_into_file 'config/environments/development.rb', after: 'config.active_storage.service = :local' do
+  %{\n\n  config.action_mailer.smtp_settings = {address: "localhost", port: 1025}\n  config.action_mailer.default_url_options = {host: "localhost", port: 3000}}
+  end
 
 
-  config.action_mailer.smtp_settings = {address: "localhost", port: 1025}
-  config.action_mailer.default_url_options = {host: "localhost", port: 3000}
-EOS
+
   end
 end
 
