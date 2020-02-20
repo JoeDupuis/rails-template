@@ -5,6 +5,8 @@ def apply_template!
   @passenger_user = app_name.camelize.downcase
   @passenger_user = ask("Enter the username running passenger") if no? %{Do you want to keep "#{@passenger_user}" as the username running passenger?}
 
+  @warning_messages = []
+
   copy_templates
   install_nix
   install_nixops
@@ -17,6 +19,23 @@ def apply_template!
   install_redis
   install_devise
   install_misc
+
+  warning_messages
+end
+
+
+def push_warning warning
+  @warning_messages << warning
+end
+
+def warning_messages
+  puts "============================================="
+  @warning_messages.each do |message|
+    puts
+    warn message
+    puts
+  end
+  puts "============================================="
 end
 
 def install_devise
