@@ -11,7 +11,6 @@ def apply_template!
   install_locales
   install_nix
   install_nixops
-  intial_commit
   install_sidekiq
   install_dotenv
   install_passenger
@@ -21,6 +20,9 @@ def apply_template!
   install_devise
   install_misc
 
+
+
+  intial_commit
   warning_messages
 end
 
