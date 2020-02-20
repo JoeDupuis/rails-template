@@ -8,6 +8,7 @@ def apply_template!
   @warning_messages = []
 
   copy_templates
+  install_locales
   install_nix
   install_nixops
   intial_commit
@@ -23,6 +24,13 @@ def apply_template!
   warning_messages
 end
 
+def install_locales
+  copy_file "config/locales/devise.ca_fr.yml"
+  copy_file "config/locales/default.ca_fr.yml"
+  copy_file "config/locales/99.ca_fr.yml"
+  copy_file "config/locales/99.en.yml"
+  FileUtils.rm 'config/locales/en.yml'
+end
 
 def push_warning warning
   @warning_messages << warning
