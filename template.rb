@@ -49,6 +49,7 @@ end
 
 def setup_base_app
   directory "app/views/application"
+  directory "app/assets/images"
   template "app/views/layouts/application.html.erb.tt"
   template "app/helper/application_helper.rb.tt"
   template "config/database.yml.tt"
