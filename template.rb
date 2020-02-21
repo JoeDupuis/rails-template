@@ -30,6 +30,12 @@ def apply_template!
   intial_commit
 
   warning_messages
+  after_bundle do
+    # Repeat messages after bundle to make extra sure they are read
+    warning_messages
+  end
+end
+
 def setup_credentials
   directory 'config/credentials'
   append_file ".gitignore", "config/credentials/*.key"
