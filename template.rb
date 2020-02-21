@@ -182,7 +182,7 @@ end
 
 
 def install_nix
-  copy_file "shell.nix"
+  template "shell.nix.tt"
   directory "nix"
 end
 
