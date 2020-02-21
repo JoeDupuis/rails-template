@@ -32,6 +32,10 @@ This will provision and boot the vm.
 
 The vm should be accessible through MDNS/avahi
 
+# Gitflow
+The git branching model follow the GitFlow workflow.
+https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
+
 
 # Deploy
 ## First deploy
