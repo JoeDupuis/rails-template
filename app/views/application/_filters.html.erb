@@ -1,0 +1,5 @@
+<% unless yield(:filters).blank? %>
+	<nav class="actions">
+		<%= yield(:filters) %>
+	</nav>
+<% end %>

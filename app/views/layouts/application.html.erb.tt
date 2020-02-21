@@ -31,7 +31,10 @@
 				<h1 id="page-title"><%%= yield(:title) %></h1>
 			<%% end %>
 			<%% unless yield().blank? %>
-				<header>
+			<header>
+          <div>
+            <%%= render "filters"%>
+          </div>
 					<div>
 						<%%= render "actions" %>
 					</div>

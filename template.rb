@@ -18,6 +18,7 @@ def apply_template!
   install_sentry
   install_redis
   install_devise
+  install_datagrid
   install_misc
 
   setup_style
@@ -51,9 +52,8 @@ def setup_base_app
   directory "app/views/application"
   directory "app/assets/images"
   template "app/views/layouts/application.html.erb.tt"
-  template "app/helper/application_helper.rb.tt"
+  copy_file "app/helper/application_helper.rb"
   template "config/database.yml.tt"
-  copy_file "config/initializers/customize_error.rb"
   template "README.md.tt"
   copy_file "config/initializers/generators.rb"
 
@@ -64,6 +64,12 @@ def setup_tests
   inject_into_file "test/test_helper.rb", before: 'class ActiveSupport::TestCase' do
     %{Dir[Rails.root.join("test/models/concerns/**/*test.rb")].each { |f| require f }\n\n}
   end
+end
+
+def install_datagrid
+  gem "datagrid", "~> 1.5"
+  gem "kaminari"
+  directory "app/views/datagrid"
 end
 
 def install_locales
