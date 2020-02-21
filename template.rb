@@ -102,6 +102,7 @@ end
 
 def install_redis
   gem 'redis', '~> 4.0'
+  template 'config/cable.yml.tt'
 end
 
 def install_sentry
