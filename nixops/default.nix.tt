@@ -1,8 +1,8 @@
 {
   pgIdentAddress ? "192.168.122.0/24",
-  dbName ? "db_name_development",
-  dbUser ? "db_user",
-  dbPW ? "123123",
+  dbName ? "<%= app_name %>_development",
+  dbUser ? "<%= app_name %>",
+  dbPW ? "secret",
   dbSuperAdmin ? true
 } :
 {
@@ -44,6 +44,4 @@
     };
 
   };
-
-;
 }
