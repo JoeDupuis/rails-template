@@ -89,13 +89,12 @@ def install_devise
   end
 
 
-  template "app/views/layouts/application.html.erb.tt"
-  template "app/helper/application_helper.rb.tt"
-
   after_bundle do
     generate "devise:install"
+    generate "devise user"
   end
 
+  push_warning "Change the devise module in the user model and update the user migration before running it."
   push_warning "Change config.mailer_sender in devise initializer."
   push_warning "Do not forget to change DEFAULT_URL_OPTIONS_HOST in .env.production"
   push_warning "Ensure you have defined root_url to *something* in your config/routes.rb."
