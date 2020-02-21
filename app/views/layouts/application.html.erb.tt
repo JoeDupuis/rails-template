@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="env-<%%= Rails.env %>">
   <head>
     <title><%= camelized %></title>
     <%%= csrf_meta_tags %>
