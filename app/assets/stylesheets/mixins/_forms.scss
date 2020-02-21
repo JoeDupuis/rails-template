@@ -1,0 +1,21 @@
+@mixin input-with-icon($icon) {
+	$_s: $font-size-base;
+	position: relative;
+	@include fa-ize($icon);
+	&::before {
+		pointer-events: none;
+		color: $gray-500;
+		display: block;
+		position: absolute;
+		top: 50%;
+		left: $gutter/1.6;
+		transform: translateY(-50%);
+		line-height: $_s;
+		height: $_s;
+		font-size: $_s;
+		margin-top: 1px;
+	}
+	& > input[type] {
+		padding-left: $gutter + $_s;
+	}
+}

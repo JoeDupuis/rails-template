@@ -1,0 +1,17 @@
+.filterable-filters {
+	flex-grow: 1;
+	display: flex;
+	justify-content: flex-end;
+	& > * {
+		margin-left: $gutter / 2;
+	}
+}
+
+// Specifics
+.filter-invoice,
+.filter-invoice_number {
+	input {
+		width: $font-size-base * 9;
+	}
+	@include input-with-icon("search");
+}

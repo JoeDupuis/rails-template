@@ -1,0 +1,19 @@
+.empty-list {
+  @include no-select;
+  font-size: 1.5em;
+  font-style: italic;
+  color: $gray-500;
+  text-align: center;
+  padding: $gutter * 2 $gutter;
+  margin: $gutter 0;
+
+  @media print {
+	  border: 1px solid $gray-300;
+  }
+
+  @media screen {
+	  background: $gray-200;
+	  border-radius: $border-radius;
+	  box-shadow: inset 0px 0px 8px 1px $gray-400;
+  }
+}

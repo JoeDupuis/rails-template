@@ -1,0 +1,160 @@
+//
+// Responsive helpers
+// ==================
+//
+// It is **never** desired to have overlapping breakpoints.
+// Breakpoints will go up to and excluding the breakpoint value, the lower
+// bound will be down to and including the desired value.
+// For `sm` at `576px` this means:
+//
+//     0   ...          575.9999 576  ...     767.9999 768
+//     |-------------------------|---------------------|
+//
+//  * `responsive-at(md)` is min: 576, max: 768.9999
+//  * `responsive-min(md)` is min: 576
+//  * `responsive-max(md)` is max: 768.9999
+//
+// This is because the min-width and max-width responsive rules act as "greater
+// or equal" than, or "lesser or equal", both sides encompassing the other way.
+//
+// But... you can't split an atom^W^W a pixel in half, can you?  Well, a pixel
+// is not a pixel is not a pixel[1], meaning that in reality, the device pixels
+// used to compute the CSS rules can be bigger than screen pixels, and a user
+// agent's width be a non-whole amount of device pixels. In the situation where
+// a device is 576.5 pixels wide, a naïve max-width: 576px and min-width: 576px
+// would end up matching both!
+//
+// [1]: https://www.quirksmode.org/blog/archives/2010/04/a_pixel_is_not.html
+//
+
+
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xx: 100vw,
+);
+
+$breakpoints-min: (
+  sm:   0px,
+  md: map-get($breakpoints, "sm"),
+  lg: map-get($breakpoints, "md"),
+  xl: map-get($breakpoints, "lg"),
+  xx: map-get($breakpoints, "xl"),
+);
+
+$breakpoints-max: (
+  sm: map-get($breakpoints, "sm") - 0.0001,
+  md: map-get($breakpoints, "md") - 0.0001,
+  lg: map-get($breakpoints, "lg") - 0.0001,
+  xl: map-get($breakpoints, "xl") - 0.0001,
+  xx: 100vw, // "100%"
+);
+
+@mixin responsive-at($breakpoint) { 
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media
+      screen and
+      (min-width: #{map-get($breakpoints-min, $breakpoint)})
+      and
+      (max-width: #{map-get($breakpoints-max, $breakpoint)})
+    {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+@mixin responsive-between($min, $max) { 
+  @if map-has-key($breakpoints, $min) and map-has-key($breakpoints, $max) {
+    @media
+      screen and
+      (min-width: #{map-get($breakpoints-min, $min)})
+      and
+      (max-width: #{map-get($breakpoints-max, $max)})
+    {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$min}` or `#{$max}`. "
+        + "Please make sure they are defined in `$breakpoints` map.";
+  }
+}
+
+@mixin responsive-min($breakpoint) { 
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media screen and (min-width: #{map-get($breakpoints-min, $breakpoint)}) {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+@mixin responsive-max($breakpoint) { 
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media screen and (max-width: #{map-get($breakpoints-max, $breakpoint)}) {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+@media screen {
+  html.env-development {
+    &::before {
+      $dimension: 1.6rem;
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      content: "??";
+      border: 0.2rem solid black;
+      height: $dimension;
+      line-height: $dimension;
+      width: $dimension * 1.7;
+      border-radius:$dimension;
+      text-align: center;
+      font-weight: bold;
+
+      @include responsive-at(sm) { color: #000; background: $orange; }
+      @include responsive-at(md) { color: #000; background: $yellow; }
+      @include responsive-at(lg) { color: #fff; background: $green; }
+      @include responsive-at(xl) { color: #fff; background: $teal; }
+      @include responsive-at(xx) { color: #fff; background: $cyan; }
+
+      @each $name, $value in $breakpoints {
+        @include responsive-at($name) { content: "#{$name}"; }
+      }
+    }
+  }
+}
+
+//
+// Responsive wrapper
+// ==================
+//
+// Use this (unsemantic) class around elements that needs to scroll
+// horizontally independently from the page.
+//
+// (If CSS has a ::wrapper pseudo-element, this wouldn't be needed. smdh.)
+//
+
+@media screen {
+  .responsive-wrapper {
+    overflow-x: auto;
+  }
+}

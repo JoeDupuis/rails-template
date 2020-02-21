@@ -1,0 +1,32 @@
+@-webkit-keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359.99deg);
+  }
+}
+.is-loading {
+  & > * {
+    opacity: 0.2;
+  }
+  position: relative;
+  @include fa-ize(circle-notch, after);
+  &::after {
+    opacity: 1;
+    $_s: 3rem;
+    font-size: $_s;
+    line-height: $_s;
+    width: $_s;
+    height: $_s;
+    color: $color-brand;
+    text-shadow: $white 0px 0px 3px;
+    text-align: center;
+    position: absolute;
+    top: $gutter * 2;
+    left: 0;
+    right: 0;
+    margin: auto;
+    animation: rotation 1s infinite linear;
+  }
+}

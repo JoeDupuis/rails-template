@@ -1,0 +1,13 @@
+.env-development {
+	.translation_missing {
+		outline: 3px dashed $red;
+		@media print {
+			&::after {
+				font-size: 1rem;
+				content: attr(title);
+				display: inline-block;
+				background: $yellow;
+			}
+		}
+	}
+}

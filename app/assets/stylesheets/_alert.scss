@@ -1,0 +1,26 @@
+.alert {
+	$_gutter: $gutter;
+	@include bs-alert;
+	margin-top: $_gutter;
+	margin-bottom: $_gutter;
+	padding: $gutter;
+
+	& > .close {
+		&,
+		&:active,
+		&:not(:disabled):not(.disabled):active, // bootstrap selector is dumb and too specific...
+		&:focus,
+		&:hover {
+			background: transparent;
+			border: 0;
+			color: inherit;
+		}
+		cursor: pointer;
+		padding: $_gutter;
+		padding-right: $_gutter * 1.5;
+		margin-top: -$_gutter;
+		margin-bottom: -$_gutter;
+		margin-right: -$_gutter;
+		float: right;
+	}
+}

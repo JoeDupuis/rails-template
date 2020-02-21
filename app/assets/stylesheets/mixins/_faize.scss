@@ -1,0 +1,67 @@
+// https://fontawesome.com/icons?d=gallery&m=free
+$fa-icons: (
+	angle-double-left: "\f100",
+	angle-double-right: "\f101",
+	angle-left: "\f104",
+	angle-right: "\f105",
+	bars: "\f0c9",
+	circle-notch: "\f1ce",
+	edit: "\f044",
+	eye: "\f06e",
+	search: "\f002",
+	sign-in-alt: "\f2f6",
+	sign-out-alt: "\f2f5",
+	sort-down: "\f0dd",
+	sort-up: "\f0de",
+	sort: "\f0dc",
+	times: "\f00d",
+	trash-alt: "\f2ed",
+);
+
+// Used only for @extending
+._fa-ize__before {
+	&::before {
+		font-family: "Font Awesome 5 Free";
+		font-weight: 900;
+	}
+}
+
+// Used only for @extending
+._fa-ize__after {
+	&::after {
+		font-family: "Font Awesome 5 Free";
+		font-weight: 900;
+	}
+}
+
+// Adds, as $position
+@mixin fa-ize($char, $position: before) {
+	&::#{$position} {
+		content: "#{map-get($fa-icons, $char)}";
+	}
+	@extend ._fa-ize__#{$position};
+}
+
+// Used only for @extending
+._fa-ize-replace {
+	position: relative;
+	text-indent: -1000em;
+	&::before {
+		margin: auto;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+
+		text-indent: 0;
+		vertical-align: middle;
+		text-align: center;
+	}
+}
+
+@mixin fa-ize-replace($char) {
+	@include fa-ize($char, before);
+	@extend ._fa-ize-replace;
+}
+

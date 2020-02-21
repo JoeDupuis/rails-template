@@ -20,6 +20,7 @@ def apply_template!
   install_devise
   install_misc
 
+  setup_style
   setup_base_app
 
   setup_credentials
@@ -34,6 +35,11 @@ def apply_template!
     # Repeat messages after bundle to make extra sure they are read
     warning_messages
   end
+end
+
+def setup_style
+  FileUtils.rm_rf "app/assets/stylesheets/application.css"
+  directory "app/assets"
 end
 
 def setup_credentials

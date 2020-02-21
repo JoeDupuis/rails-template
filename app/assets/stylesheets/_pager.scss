@@ -1,0 +1,86 @@
+// Uses the default kaminari DOM.
+
+.pagination {
+	$_size: $gutter * 2.2;
+	$_bg: $body-bg;
+	$_fg: $link-color;
+	$_current: $black;
+	$_border-width: 1px;
+	$_border: $_border-width solid scale-color($_fg, $lightness: 40%);
+	$_padding: $gutter / 4;
+
+	display: flex;
+	flex-wrap: wrap;
+
+	margin-top: $gutter;
+	margin-bottom: $gutter;
+
+	& > span {
+		@include no-select;
+
+		background: $_bg;
+		margin-right: -$_border-width;
+		margin-bottom: -$_border-width;
+
+		&:first-child a, &.current:first-child {
+			border-top-left-radius: $border-radius;
+			border-bottom-left-radius: $border-radius;
+		}
+
+		&:last-child a, &.current:last-child {
+			border-top-right-radius: $border-radius;
+			border-bottom-right-radius: $border-radius;
+		}
+
+		&, a {
+			color: $_fg;
+			min-width: $_size;
+			height: $_size;
+			line-height: $_size;
+			text-align: center;
+			text-decoration: none;
+		}
+
+		a {
+			border: $_border;
+			display: block;
+			padding-left: $_padding;
+			padding-right: $_padding;
+
+			&:hover, &:focus, &:active {
+				background-color: scale-color($_bg, $lightness: -15%);
+			}
+		}
+
+		&.current, &.gap {
+			color: $_current;
+			border: $_border;
+			padding-left: $_padding;
+			padding-right: $_padding;
+		}
+
+		// « < > »
+		&:not(.page) a {
+			// Assumes they're all fa-ize replaced; the font seems
+			// just a bit unbalanced.
+			&::before {
+				margin-top: 1px;
+			}
+		}
+
+		// Replace all wordly words by icons.
+		// It is assumed that `.gap` is already set to … in the translation.
+		&.first a {
+			@include fa-ize-replace("angle-double-left");
+		}
+		&.prev a {
+			@include fa-ize-replace("angle-left");
+		}
+		&.next a {
+			@include fa-ize-replace("angle-right");
+		}
+		&.last a {
+			@include fa-ize-replace("angle-double-right");
+		}
+	}
+}

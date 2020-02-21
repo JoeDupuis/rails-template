@@ -1,0 +1,5 @@
+// Allows gating some optimizations in the CSS
+$print: true;
+
+// Import the whole application
+@import "application";

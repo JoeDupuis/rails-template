@@ -1,0 +1,39 @@
+// Body
+$body-bg: #f8fafc;
+$body-color: #212529;
+$color-brand: #FF8606;
+
+// Typography
+//$font-family-sans-serif: "Nunito", sans-serif;
+$font-family-sans-serif: Open Sans, Helvetica, Georgia, Sans-serif;
+
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+$gutter: 1rem;
+$container-max-width: 1600px;
+
+$navbar-bg-color: #343a40;
+$navbar-hl-color: #ffffff;
+$navbar-fg-color: rgba(255, 255, 255, .5);
+$navbar-ac-color: rgba(255, 255, 255, .75);
+
+//
+// Bootstrap (compat) overrides
+//
+
+// Colors
+$blue:   #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink:   #f66D9b;
+$red:    #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green:  #38c172;
+$teal:   #4dc0b5;
+$cyan:   #6cb2eb;
+
+// Behavioural differences;
+// Prefer `@media print` instead when possible.
+$print: false !default;
