@@ -22,9 +22,15 @@ def apply_template!
 
   setup_base_app
 
+  setup_credentials
 
   intial_commit
   warning_messages
+def setup_credentials
+  directory 'config/credentials'
+  append_file ".gitignore", "config/credentials/*.key"
+end
+
 def setup_base_app
   template "app/views/layouts/application.html.erb.tt"
   copy_file "app/views/application/_empty.html.erb"
