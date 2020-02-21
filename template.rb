@@ -54,6 +54,8 @@ def setup_base_app
   template "config/database.yml.tt"
   copy_file "config/initializers/customize_error.rb"
   template "README.md.tt"
+  copy_file "config/initializers/generators.rb"
+
   FileUtils.touch 'dev_notes.md'
 end
 
