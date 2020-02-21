@@ -1,4 +1,3 @@
-<h1><%= plural_table_name.titleize %></h1>
 <%% if @<%= plural_table_name %>.length.positive? %>
 <table class="datatable">
   <thead>
@@ -18,7 +17,7 @@
 <% end -%>
         <td><%%= link_to 'Show', <%= model_resource_name %> %></td>
         <td><%%= link_to 'Edit', edit_<%= singular_route_name %>_path(<%= singular_table_name %>) %></td>
-        <td><%%= link_to 'Destroy', <%= model_resource_name %>, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%%= link_to 'Destroy', <%= model_resource_name %>, method: :delete, data: { confirm: t(:confirm_delete) } %></td>
       </tr>
     <%% end %>
   </tbody>
@@ -27,6 +26,7 @@
 <%% else %>
     <%%= render "empty", collection: @<%= plural_table_name %> %>
 <%% end %>
-<br>
 
+<%% content_for :actions do %>
 <%%= link_to 'New <%= singular_table_name.titleize %>', new_<%= singular_route_name %>_path %>
+<%% end %>
