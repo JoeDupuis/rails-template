@@ -1,0 +1,24 @@
+<header data-controller="menu" class="menu">
+  <h1>
+    <a href="/"><%= camelized %></a>
+  </h1>
+  <div class="menu__collapse-area">
+    <nav class="navbar navbar--main">
+      <ul>
+        <%%#= menu_item _path, text: I18n.t("item") %>
+      </ul>
+      <%% if user_signed_in? %>
+        <ul>
+          <%%= menu_item destroy_user_session_path, method: :delete %>
+        </ul>
+      <%% end %>
+    </nav>
+    <%% unless yield(:submenu).blank? %>
+      <nav class="navbar navbar--secondary">
+        <ul>
+          <%%= yield :submenu %>
+        </ul>
+      </nav>
+    <%% end %>
+  </div>
+</header>
