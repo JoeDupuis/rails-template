@@ -188,6 +188,11 @@ end
 
 def copy_templates
   copy_file "lib/templates/rails/scaffold_controller/controller.rb.tt"
+  copy_file "lib/templates/erb/scaffold/show.html.erb.tt"
+  copy_file "lib/templates/erb/scaffold/new.html.erb.tt"
+  copy_file "lib/templates/erb/scaffold/index.html.erb.tt"
+  copy_file "lib/templates/erb/scaffold/_form.html.erb.tt"
+  copy_file "lib/templates/erb/scaffold/edit.html.erb.tt"
 end
 
 def add_template_repository_to_source_path
