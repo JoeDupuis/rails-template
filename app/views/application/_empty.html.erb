@@ -1,0 +1,10 @@
+<div class="empty-list">
+  <%= t(
+    "application.empty.message",
+    name: if collection.respond_to?(:model) then
+            collection.model.model_name.human.downcase
+          else
+            t(".data")
+          end
+  ) %>
+</div>
