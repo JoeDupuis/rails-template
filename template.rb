@@ -174,6 +174,8 @@ def install_nixops
   template "nixops/default.nix.tt"
   template "nixops/provider/libvirtd.nix.tt"
   template "nixops/provider/vbox.nix.tt"
+
+  push_warning "Do not forget to set db user and db name in nixops/default.nix (or pass them as parameters)"
 end
 
 def intial_commit
