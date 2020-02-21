@@ -52,7 +52,7 @@ def setup_base_app
   copy_file "app/views/application/_empty.html.erb"
   template "app/helper/application_helper.rb.tt"
   template "config/database.yml.tt"
-  copy_file "config/initializer/customize_error.rb"
+  copy_file "config/initializers/customize_error.rb"
   template "README.md.tt"
   FileUtils.touch 'dev_notes.md'
 end
