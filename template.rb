@@ -20,10 +20,16 @@ def apply_template!
   install_devise
   install_misc
 
+  setup_base_app
 
 
   intial_commit
   warning_messages
+def setup_base_app
+  template "app/views/layouts/application.html.erb.tt"
+  copy_file "app/views/application/_empty.html.erb"
+  template "app/helper/application_helper.rb.tt"
+end
 end
 
 def install_locales
