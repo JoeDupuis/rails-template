@@ -24,7 +24,11 @@ def apply_template!
 
   setup_credentials
 
+
+  setup_tests
+
   intial_commit
+
   warning_messages
 def setup_credentials
   directory 'config/credentials'
@@ -36,6 +40,11 @@ def setup_base_app
   copy_file "app/views/application/_empty.html.erb"
   template "app/helper/application_helper.rb.tt"
 end
+
+def setup_tests
+  inject_into_file "test/test_helper.rb", before: 'class ActiveSupport::TestCase' do
+    %{Dir[Rails.root.join("test/models/concerns/**/*test.rb")].each { |f| require f }\n\n}
+  end
 end
 
 def install_locales
