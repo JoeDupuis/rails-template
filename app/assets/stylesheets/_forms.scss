@@ -89,7 +89,7 @@ form {
 	label {
 		color: $danger;
 	}
-	#{$text-like-inputs}m
+	#{$text-like-inputs}
 	select {
 		border-color: $danger;
 		&:focus {
