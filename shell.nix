@@ -9,8 +9,8 @@
       ruby_2_6
       ruby_2_7;
 
-    bundler  = self.callPackage ./nix/bundler { sha256 = "1sjnfsyw80g56kj96gdfgxfb793h6d5fyyir4zf2x71wk4wq1qy7";
-                                                version = "2.0.1";
+    bundler  = self.callPackage ./nix/bundler { sha256 = "12glbb1357x91fvd004jgkw7ihlkpc9dwr349pd7j83isqhls0ah";
+                                                version = "2.1.4";
                                                 ruby = self.ruby_2_7;};
   })];
 }
