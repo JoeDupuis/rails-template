@@ -58,7 +58,7 @@ def install_locales
   copy_file "config/locales/default.ca_fr.yml"
   copy_file "config/locales/99.ca_fr.yml"
   copy_file "config/locales/99.en.yml"
-  FileUtils.rm 'config/locales/en.yml'
+  FileUtils.rm_rf 'config/locales/en.yml'
 end
 
 def push_warning warning
