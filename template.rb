@@ -84,6 +84,9 @@ def install_devise
   gem 'geocoder'
   gem 'authtrail'
   gem 'ahoy_matey'
+  after_bundle do
+    generate 'ahoy:install'
+  end
   inject_into_file 'config/environments/production.rb', after: 'config.i18n.fallbacks = true' do
     "\n\n  config.action_mailer.default_url_options = { host: ENV['DEFAULT_URL_OPTIONS_HOST'] }"
   end
