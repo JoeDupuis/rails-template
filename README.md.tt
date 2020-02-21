@@ -1,0 +1,74 @@
+# dependencies
+- ruby (check ./.ruby-version for version)
+- bundler 2
+- yarn
+- postgresql 11 for the tool db and 9.6 for RTDB
+- redis
+
+## Bonjour/avahi/mdns
+The default dev config assume you have working avahi.
+Try restarting your dns service if it does not work.
+
+
+## Nix
+Dependencies can be installed with nix (shell.nix) and nixops (nixops folder).
+
+PG/Redis can be setup through nixops (vm)
+The rest can run in a nix subshell (shell.nix)
+
+### Instructions
+Install nix for your os. Then start `nix-shell` at the root of the project. This should install everything
+
+Then create a deployment for libvirt (or vbox).
+To do so run `nixops create -d <%= app_name.dasherize %> ./nixops ./nixops/provider/<PROVIDER FILE>`
+
+for example for libvirtd
+`nixops create -d <%= app_name.dasherize %> ./nixops ./nixops/provider/libvirtd.nix`
+
+then
+`nixops deploy -d <%= app_name.dasherize %>`
+
+This will provision and boot the vm.
+
+The vm should be accessible through MDNS/avahi
+
+
+# Deploy
+## First deploy
+### Master key
+To deploy on a blank server we need to upload the master key first:
+`bundle exec cap <stage> master_key:setup`
+where <stage> is the desired stage.
+
+### Passenger
+We can't start passenger before the first deploy and the first deploy tries to restart passenger.
+Therefore passenger will crash. Just rerun the deploy a second time after starting passenger.
+https://gitlab.com/myvibe/myvibe/issues/31
+
+
+### sidekiq
+install sidekiq service with
+`bundle exec cap sidekiq:install`
+It is not start by default, but the first deploy should start it (untested)
+the `sidekiq:start` task should start it if need be.
+
+
+# Duplicates
+Flag duplicates that we don't know how to fix yet with a TODO comment and a
+like this:
+#TODO remove duplicates  Ref: CgoKAQwHAg0NCAoNBAQPDw
+Where The ref comes from:
+<http://www.shortguid.com/#/guid/short>
+This will allow us to see the duplicate in the bin/rails notes
+and search the code for other use of the duplicate to refactor
+
+
+# Dev Notes
+In case the app changes hands, notes about design decisions or things to know for future developers can be added in the dev_notes.md file with the following format:
+
+```
+# (2020/12/31) Title
+ Description
+ ```
+
+Instructions about how to use or setup the app should be added here.
