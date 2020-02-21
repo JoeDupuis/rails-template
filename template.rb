@@ -45,6 +45,7 @@ def setup_base_app
   template "app/views/layouts/application.html.erb.tt"
   copy_file "app/views/application/_empty.html.erb"
   template "app/helper/application_helper.rb.tt"
+  template "config/database.yml.tt"
   copy_file "config/initializer/customize_error.rb"
   template "README.md.tt"
 end
