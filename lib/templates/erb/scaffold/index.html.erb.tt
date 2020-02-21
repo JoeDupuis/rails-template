@@ -1,0 +1,32 @@
+<h1><%= plural_table_name.titleize %></h1>
+<%% if @<%= plural_table_name %>.length.positive? %>
+<table class="datatable">
+  <thead>
+    <tr>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+      <th class="datatable__header-cell"><%= attribute.human_name %></th>
+<% end -%>
+      <th class="datatable__actions" colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+      <tr>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+        <td class="datatable__table-cell"><%%= <%= singular_table_name %>.<%= attribute.column_name %> %></td>
+<% end -%>
+        <td><%%= link_to 'Show', <%= model_resource_name %> %></td>
+        <td><%%= link_to 'Edit', edit_<%= singular_route_name %>_path(<%= singular_table_name %>) %></td>
+        <td><%%= link_to 'Destroy', <%= model_resource_name %>, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <%% end %>
+  </tbody>
+</table>
+
+<%% else %>
+    <%%= render "empty", collection: @<%= plural_table_name %> %>
+<%% end %>
+<br>
+
+<%%= link_to 'New <%= singular_table_name.titleize %>', new_<%= singular_route_name %>_path %>
