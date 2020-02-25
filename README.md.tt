@@ -1,4 +1,4 @@
-# dependencies
+# Dependencies
 - ruby (check ./.ruby-version for version)
 - bundler 2
 - yarn
