@@ -11,7 +11,7 @@ development:
   database: <%%= ENV['RAILS_PG_DB'] || '<%= app_name %>_development' %>
   username: <%%= ENV['RAILS_PG_USER'] || '<%= app_name %>' %>
   password: <%%= ENV['RAILS_PG_PASS'] || Rails.application.credentials.dig(:db, :password) || 'secret' %>
-  port: <%= ENV['RAILS_PG_PORT'] || '5432' %>
+  port: <%%= ENV['RAILS_PG_PORT'] || '5432' %>
 
 
   # Schema search path. The server defaults to $user,public
@@ -32,7 +32,7 @@ test:
   database: <%%= ENV['RAILS_PG_DB'] || '<%= app_name %>_test' %>
   username: <%%= ENV['RAILS_PG_USER'] || '<%= app_name %>' %>
   password: <%%= ENV['RAILS_PG_PASS'] || Rails.application.credentials.dig(:db, :password) || 'secret' %>
-  port: <%= ENV['RAILS_PG_PORT'] || '5432' %>
+  port: <%%= ENV['RAILS_PG_PORT'] || '5432' %>
 
 
 # As with config/credentials.yml, you never want to store sensitive information,
@@ -60,4 +60,4 @@ production:
   database: <%%= ENV['RAILS_PG_DB'] || '<%= app_name %>_production' %>
   username: <%%= ENV['RAILS_PG_USER'] || '<%= app_name %>' %>
   password: <%%= ENV['RAILS_PG_PASS'] || Rails.application.credentials.dig(:db, :password) || 'secret' %>
-  port: <%= ENV['RAILS_PG_PORT'] || '5432' %>
+  port: <%%= ENV['RAILS_PG_PORT'] || '5432' %>
