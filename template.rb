@@ -52,7 +52,7 @@ def setup_base_app
   directory "app/views/application"
   directory "app/assets/images"
   template "app/views/layouts/application.html.erb.tt"
-  copy_file "app/helper/application_helper.rb"
+  copy_file "app/helpers/application_helper.rb"
   template "config/database.yml.tt"
   template "README.md.tt"
   copy_file "config/initializers/generators.rb"
