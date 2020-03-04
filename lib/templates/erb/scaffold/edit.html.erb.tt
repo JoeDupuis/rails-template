@@ -2,6 +2,6 @@
 <%%= render 'form', <%= singular_table_name %>: @<%= singular_table_name %> %>
 
 <%% content_for :actions do %>
-  <%%= link_to 'Show', @<%= singular_table_name %> %>
-  <%%= link_to 'Back', <%= index_helper %>_path %>
+  <%%= link_to t(:show), @<%= singular_table_name %> %>
+  <%%= link_to t(:back), <%= index_helper %>_path %>
 <%% end %>
