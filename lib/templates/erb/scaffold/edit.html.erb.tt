@@ -3,5 +3,5 @@
 
 <%% content_for :actions do %>
   <%%= link_to t(:show), @<%= singular_table_name %> %>
-  <%%= link_to t(:back), <%= index_helper %>_path %>
+  <%%= link_to t(:back), :back %>
 <%% end %>
