@@ -16,5 +16,5 @@
 
 <%% content_for :actions do %>
   <%%= link_to t(:edit), edit_<%= singular_table_name %>_path(@<%= singular_table_name %>) %>
-  <%%= link_to t(:back), :back %>
+  <%%= link_back %>
 <%% end %>

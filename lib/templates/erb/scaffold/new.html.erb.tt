@@ -2,5 +2,5 @@
 <%%= render 'form', <%= singular_table_name %>: @<%= singular_table_name %> %>
 
 <%% content_for :actions do %>
-  <%%= link_to t(:back), :back %>
+  <%%= link_back %>
 <%% end %>

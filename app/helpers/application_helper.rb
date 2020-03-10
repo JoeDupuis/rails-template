@@ -40,4 +40,9 @@ module ApplicationHelper
   def title(title)
     content_for(:title) { title }
   end
+
+
+  def link_back
+    link_to t(:back), :back
+  end
 end
