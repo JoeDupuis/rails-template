@@ -39,7 +39,7 @@ class <%= controller_class_name %>Controller < ApplicationController
 
   def destroy
     @<%= orm_instance.destroy %>
-    redirect_to <%= index_helper %>_url, notice: t(".success")
+    redirect_back fallback_location: <%= redirect_resource_name %>, notice: t(".success")
   end
 
   private
