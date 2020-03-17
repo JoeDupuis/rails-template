@@ -175,6 +175,11 @@ def install_dotenv
   template ".env.tt"
   template ".env.development.tt"
   template ".env.production.tt"
+  append_file ".gitignore", ".env.local"
+  append_file ".gitignore", ".env.test.local"
+  append_file ".gitignore", ".env.development.local"
+  append_file ".gitignore", ".env.production.local"
+  append_file ".gitignore", ".env.staging.local"
 end
 
 def install_sidekiq
