@@ -133,11 +133,10 @@ def install_sentry
   gem "sentry-raven"
   initializer "sentry.rb", <<-EOS
     Raven.configure do |config|
-      config.dsn = ENV['SENTRY_DSN']
     end
   EOS
 
-  push_warning "Do not forget to change SENTRY_DSN in .env"
+  push_warning "Do not forget to change SENTRY_DSN in .env.production"
 end
 
 def install_capistrano
