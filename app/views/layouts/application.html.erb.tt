@@ -24,7 +24,7 @@
 
   <body>
 		<%%= render "menu" %>
-    <section>
+    <section class="page">
 		  <%%= flash_message notice, type: "success" %>
 		  <%%= flash_message alert, type: "danger" %>
 			<%% unless yield(:title).blank? %>
