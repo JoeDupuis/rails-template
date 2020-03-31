@@ -13,7 +13,6 @@ def apply_template!
   install_nixops
   install_sidekiq
   install_dotenv
-  install_passenger
   install_capistrano
   install_sentry
   install_redis
@@ -143,7 +142,6 @@ def install_capistrano
   gem "capistrano-rails", require: false
   gem 'capistrano-env', require: false
   gem 'capistrano-master-key', github: 'JoeDupuis/capistrano-master-key',require: false
-  gem 'capistrano-passenger', require: false
   gem 'capistrano-sidekiq', require: false
   copy_file "Capfile"
   FileUtils.mkdir_p 'lib/capistrano/tasks'
@@ -159,6 +157,7 @@ end
 
 def install_passenger
   gem "passenger", require: false, group: [:production]
+  gem 'capistrano-passenger', require: false
   template "Passengerfile.json.tt"
 end
 
