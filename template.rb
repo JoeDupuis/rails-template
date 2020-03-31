@@ -106,14 +106,8 @@ def install_devise
   after_bundle do
     generate 'ahoy:install'
   end
-  inject_into_file 'config/environments/production.rb', after: 'config.i18n.fallbacks = true' do
-    "\n\n  config.action_mailer.default_url_options = { host: ENV['DEFAULT_URL_OPTIONS_HOST'] }"
-  end
-
-  inject_into_file 'config/environments/development.rb', after: 'config.active_storage.service = :local' do
-  %{\n\n  config.action_mailer.smtp_settings = {address: "localhost", port: 1025}\n  config.action_mailer.default_url_options = {host: "localhost", port: 3000}}
-  end
-
+  environment "config.action_mailer.default_url_options = { host: ENV['DEFAULT_URL_OPTIONS_HOST'] }", env: :production
+  environment %{config.action_mailer.smtp_settings = {address: "localhost", port: 1025}\n  config.action_mailer.default_url_options = {host: "localhost", port: 3000}\n}, env: :development
 
   after_bundle do
     generate "devise:install"
