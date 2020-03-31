@@ -16,6 +16,8 @@ Dependencies can be installed with nix (shell.nix) and nixops (nixops folder).
 PG/Redis can be setup through nixops (vm)
 The rest can run in a nix subshell (shell.nix)
 
+
+
 ### Instructions
 Install nix for your os. Then start `nix-shell` at the root of the project. This should install everything
 
@@ -32,6 +34,12 @@ This will provision and boot the vm.
 
 The vm should be accessible through MDNS/avahi
 
+### Bundix
+If the production server is running nixos, the gems will be deploy using bundix. Which will build a gemset.nix file locking the non ruby dependencies of the gems.
+The default shell.nix also use this file for the gems to be as close as possible to the production server. If you want to change the gems installed using the nixshell,
+run `bundix -l` then quit and reopen the nix-shell.
+
+
 # Gitflow
 The git branching model follow the GitFlow workflow.
 https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
@@ -43,18 +51,6 @@ https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
 To deploy on a blank server we need to upload the master key first:
 `bundle exec cap <stage> master_key:setup`
 where <stage> is the desired stage.
-
-### Passenger
-We can't start passenger before the first deploy and the first deploy tries to restart passenger.
-Therefore passenger will crash. Just rerun the deploy a second time after starting passenger.
-https://gitlab.com/myvibe/myvibe/issues/31
-
-
-### sidekiq
-install sidekiq service with
-`bundle exec cap sidekiq:install`
-It is not start by default, but the first deploy should start it (untested)
-the `sidekiq:start` task should start it if need be.
 
 
 # Duplicates
