@@ -69,6 +69,7 @@ def install_datagrid
   gem "datagrid", "~> 1.5"
   gem "kaminari"
   directory "app/views/datagrid"
+  directory "app/grids"
 end
 
 def install_locales
@@ -76,6 +77,8 @@ def install_locales
   copy_file "config/locales/default.ca_fr.yml"
   copy_file "config/locales/99.ca_fr.yml"
   copy_file "config/locales/99.en.yml"
+  copy_file "config/locales/datagrid.en.yml"
+  copy_file "config/locales/datagrid.ca_fr.yml"
   FileUtils.rm_rf 'config/locales/en.yml'
 end
 
