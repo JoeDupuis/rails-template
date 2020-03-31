@@ -1,15 +1,5 @@
 <%%= form_with(model: <%= model_resource_name %>, local: true) do |form| %>
-  <%% if <%= singular_table_name %>.errors.any? %>
-    <div id="error_explanation">
-      <h2><%%= t(:error, count: <%= singular_table_name %>.errors.count) %> prohibited this <%= singular_table_name %> from being saved:</h2>
-
-      <ul>
-        <%% <%= singular_table_name %>.errors.full_messages.each do |message| %>
-          <li><%%= message %></li>
-        <%% end %>
-      </ul>
-    </div>
-  <%% end %>
+  <%%= form_errors(<%= model_resource_name %>) %>
 
 <% attributes.each do |attribute| -%>
   <div class="field">

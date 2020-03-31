@@ -1,28 +1,29 @@
 <%% if @<%= plural_table_name %>.length.positive? %>
-<table class="datatable">
-  <thead>
-    <tr>
-<% attributes.reject(&:password_digest?).each do |attribute| -%>
-      <th class="datatable__header-cell"><%= attribute.human_name %></th>
-<% end -%>
-      <th class="datatable__actions" colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+<div class="responsive-wrapper datatable-wrapper">
+  <table class="datatable">
+    <thead>
       <tr>
-<% attributes.reject(&:password_digest?).each do |attribute| -%>
+        <% attributes.reject(&:password_digest?).each do |attribute| -%>
+        <th class="datatable__header-cell"><%= attribute.human_name %></th>
+        <% end -%>
+        <th class="datatable__actions" colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+      <tr>
+        <% attributes.reject(&:password_digest?).each do |attribute| -%>
         <td class="datatable__table-cell"><%%= <%= singular_table_name %>.<%= attribute.column_name %> %></td>
-<% end -%>
+        <% end -%>
         <td><%%= link_to t(:show), <%= model_resource_name %> %></td>
         <td><%%= link_to t(:edit), edit_<%= singular_route_name %>_path(<%= singular_table_name %>) %></td>
         <td><%%= link_to t(:destroy), <%= model_resource_name %>, method: :delete, data: { confirm: t(:confirm_delete) } %></td>
       </tr>
-    <%% end %>
-  </tbody>
-</table>
-
+      <%% end %>
+    </tbody>
+  </table>
+</div>
 <%% else %>
     <%%= render "empty", collection: @<%= plural_table_name %> %>
 <%% end %>
