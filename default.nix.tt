@@ -1,0 +1,12 @@
+{ pkgs ? import <nixpkgs> {} }:
+
+let
+  inherit (pkgs) bundlerEnv stdenv;
+  gems = bundlerEnv {
+    name = "<%= app_name.dasherize  %>-gems";
+    gemdir = ./.;
+    groups = [ "default" "production" "development" "test"];
+    ruby = pkgs.bundler.ruby;
+  };
+in
+gems
