@@ -56,8 +56,8 @@ test:
 #
 production:
   <<: *default
-  host: <%%= ENV['RAILS_PG_HOST'] || "localhost" %>
+  host: <%%= ENV['RAILS_PG_HOST'] %>
   database: <%%= ENV['RAILS_PG_DB'] || '<%= app_name %>_production' %>
   username: <%%= ENV['RAILS_PG_USER'] || '<%= app_name %>' %>
-  password: <%%= ENV['RAILS_PG_PASS'] || Rails.application.credentials.dig(:db, :password) || 'secret' %>
+  password: <%%= ENV['RAILS_PG_PASS'] || Rails.application.credentials.dig(:db, :password) %>
   port: <%%= ENV['RAILS_PG_PORT'] || '5432' %>
