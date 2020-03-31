@@ -64,15 +64,19 @@ table.multirow-grouped {
 	}
 }
 
-table.datatable {
-	th.datatable__actions {
+table.datatable, table.datagrid {
+	  th.datatable__actions,
+    th.datagrid__actions {
 		text-align: center;
 	}
-	td.datatable__action {
+	td.datatable__action,
+  td.datagrid__action {
 		padding-right: 0;
 	}
 	th.datatable__actions,
-	td.datatable__action {
+	td.datatable__action,
+  td.datagrid__action,
+  td.datagrid__actions {
     @media print {
       display: none;
     }
@@ -209,4 +213,29 @@ table th .sort-link {
       background: initial;
     }
   }
+}
+
+.datagrid {
+    &__order {
+        color: inherit;
+        text-decoration: inherit;
+    }
+
+    &__order-selector {
+        display: inline;
+    }
+
+    .ordered {
+        &.asc {
+            .datagrid__order--asc {
+                display: none;
+            }
+        }
+        &.desc {
+            .datagrid__order--desc {
+                display: none;
+            }
+
+        }
+    }
 }
