@@ -20,11 +20,13 @@ def apply_template!
   install_datagrid
   install_misc
 
+
   setup_style
   setup_base_app
 
   setup_credentials
 
+  misc_config
 
   setup_tests
 
@@ -212,6 +214,10 @@ def intial_commit
     git add: "."
     git commit: '-m "Initial commit"'
   end
+end
+
+def misc_config
+  environment "config.hosts << ENV['DEV_HOST'] if ENV['DEV_HOST'].present?"
 end
 
 def copy_templates
