@@ -2,8 +2,8 @@
 def apply_template!
   add_template_repository_to_source_path
 
-  @passenger_user = app_name.camelize.downcase
-  @passenger_user = ask("Enter the username running passenger") if no? %{Do you want to keep "#{@passenger_user}" as the username running passenger?}
+  @server_user = app_name.camelize.downcase
+  @server_user = ask("Enter the username of the user running the app on the production server") if no? %{Do you want to keep "#{@server_user}" as the username running the app on the production server?}
 
   @warning_messages = []
 

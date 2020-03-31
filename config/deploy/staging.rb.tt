@@ -1,4 +1,4 @@
-server "staging.web.server.com", user: "<%= @passenger_user %>", roles: %w{app db web}
+server "staging.web.server.com", user: "<%= @server_user %>", roles: %w{app db web}
 
 set :branch, 'develop'
 set :rails_env, 'production'

@@ -12,8 +12,8 @@ set :migration_role, :app
 
 set :conditionally_migrate, true
 
-set :passenger_in_gemfile, true
-set :passenger_restart_with_touch, false
+# set :passenger_in_gemfile, true
+# set :passenger_restart_with_touch, false
 
 #capistrano sidekiq
 set :init_system, :systemd
