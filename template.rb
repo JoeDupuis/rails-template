@@ -197,6 +197,7 @@ end
 
 def install_nix
   template "shell.nix.tt"
+  template "default.nix.tt"
   directory "nix"
 end
 
