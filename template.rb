@@ -19,7 +19,7 @@ def apply_template!
   install_devise
   install_datagrid
   install_misc
-
+  install_js
 
   setup_style
   setup_base_app
@@ -37,6 +37,10 @@ def apply_template!
     # Repeat messages after bundle to make extra sure they are read
     warning_messages
   end
+end
+
+def install_js
+  copy_file 'app/javascript/controllers/menu_controller.js'
 end
 
 def setup_style
