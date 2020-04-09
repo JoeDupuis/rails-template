@@ -1,24 +1,24 @@
 <%% if @<%= plural_table_name %>.length.positive? %>
-<div class="responsive-wrapper datatable-wrapper">
-  <table class="datatable">
-    <thead>
-      <tr>
+<div class="responsive-wrapper">
+  <table class="datagrid">
+    <thead class="datagrid__header">
+      <tr class="datagrid__row">
         <% attributes.reject(&:password_digest?).each do |attribute| -%>
-        <th class="datatable__header-cell"><%= attribute.human_name %></th>
+        <th class="datagrid__header-cell"><%= attribute.human_name %></th>
         <% end -%>
-        <th class="datatable__actions" colspan="3"></th>
+        <th class="datagrid__header-cell datagrid__header-cell--action" colspan="3"></th>
       </tr>
     </thead>
 
-    <tbody>
+    <tbody class="datagrid__body">
       <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
-      <tr>
+      <tr class="datagrid__row">
         <% attributes.reject(&:password_digest?).each do |attribute| -%>
-        <td class="datatable__table-cell"><%%= <%= singular_table_name %>.<%= attribute.column_name %> %></td>
+        <td class="datagrid__cell"><%%= <%= singular_table_name %>.<%= attribute.column_name %> %></td>
         <% end -%>
-        <td><%%= link_to t(:show), <%= model_resource_name %> %></td>
-        <td><%%= link_to t(:edit), edit_<%= singular_route_name %>_path(<%= singular_table_name %>) %></td>
-        <td><%%= link_to t(:destroy), <%= model_resource_name %>, method: :delete, data: { confirm: t(:confirm_delete) } %></td>
+        <td class="datagrid__cell datagrid__cell--action"><%%= link_to t(:show), <%= model_resource_name %>, class: [ 'action', 'action--show'] %></td>
+        <td class="datagrid__cell datagrid__cell--action"><%%= link_to t(:edit), edit_<%= singular_route_name %>_path(<%= singular_table_name %>), class: [ 'action', 'action--edit'] %></td>
+        <td class="datagrid__cell datagrid__cell--action"><%%= link_to t(:destroy), <%= model_resource_name %>, method: :delete, data: { confirm: t(:confirm_delete) }, class: [ 'action', 'action--delete'] %></td>
       </tr>
       <%% end %>
     </tbody>

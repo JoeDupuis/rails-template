@@ -1,27 +1,27 @@
-<%%= form_with(model: <%= model_resource_name %>, local: true) do |form| %>
+<%%= form_with(model: <%= model_resource_name %>, local: true, class: :form) do |form| %>
   <%%= form_errors(<%= model_resource_name %>) %>
 
 <% attributes.each do |attribute| -%>
-  <div class="field">
+  <div class="form__field">
 <% if attribute.password_digest? -%>
-    <%%= form.label :password %>
-    <%%= form.password_field :password %>
+    <%%= form.label :password, class: 'form__label' %>
+    <%%= form.password_field :password, class: 'form__input' %>
   </div>
 
-  <div class="field">
-    <%%= form.label :password_confirmation %>
-    <%%= form.password_field :password_confirmation %>
+  <div class="form__field">
+    <%%= form.label :password_confirmation, class: 'form__label' %>
+    <%%= form.password_field :password_confirmation, class: 'form__input' %>
 <% elsif attribute.attachments? -%>
-    <%%= form.label :<%= attribute.column_name %> %>
-    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, multiple: true %>
+    <%%= form.label :<%= attribute.column_name %>, class: 'form__label' %>
+    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, multiple: true, class: 'form__input' %>
 <% else -%>
-    <%%= form.label :<%= attribute.column_name %> %>
-    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %> %>
+    <%%= form.label :<%= attribute.column_name %>, class: 'form__label' %>
+    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, class: 'form__input' %>
 <% end -%>
   </div>
 
 <% end -%>
   <div class="actions">
-    <%%= form.submit %>
+    <%%= form.submit class: 'form__submit' %>
   </div>
 <%% end %>
