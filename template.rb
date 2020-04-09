@@ -40,7 +40,8 @@ def apply_template!
 end
 
 def install_js
-  copy_file 'app/javascript/controllers/menu_controller.js'
+  directory 'app/javascript/controllers'
+
 end
 
 def setup_style
