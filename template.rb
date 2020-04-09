@@ -55,6 +55,7 @@ end
 
 def setup_base_app
   directory "app/views/application"
+  directory "app/controllers/concerns"
   directory "app/assets/images"
   template "app/views/layouts/application.html.erb.tt"
   copy_file "app/helpers/application_helper.rb"
