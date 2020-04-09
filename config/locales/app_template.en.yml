@@ -1,0 +1,6 @@
+en:
+  application:
+    form_errors:
+      title:
+        one: "An error prevented saving the record"
+        other: "%{count} errors prevented saving the record"

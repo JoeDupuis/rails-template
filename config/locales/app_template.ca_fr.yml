@@ -1,0 +1,6 @@
+ca_fr:
+  application:
+    form_errors:
+      title:
+        one: "Une erreur empêche l'enregistrement"
+        other: "%{count} erreurs empêchent l'enregistrement"
