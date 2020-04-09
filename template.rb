@@ -113,6 +113,8 @@ def install_devise
   environment "config.action_mailer.default_url_options = { host: ENV['DEFAULT_URL_OPTIONS_HOST'] }", env: :production
   environment %{config.action_mailer.smtp_settings = {address: "localhost", port: 1025}\n  config.action_mailer.default_url_options = {host: "localhost", port: 3000}\n}, env: :development
 
+  directory 'app/views/devise'
+
   after_bundle do
     generate "devise:install"
     generate "devise user"
