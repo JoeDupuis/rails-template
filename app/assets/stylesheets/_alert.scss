@@ -1,26 +1,48 @@
-.alert {
-	$_gutter: $gutter;
-	@include bs-alert;
-	margin-top: $_gutter;
-	margin-bottom: $_gutter;
-	padding: $gutter;
+@mixin alert-variant($background, $border, $color) {
+    color: $color;
+    background-color: $background;
+    border-color: $border;
 
-	& > .close {
-		&,
-		&:active,
-		&:not(:disabled):not(.disabled):active, // bootstrap selector is dumb and too specific...
-		&:focus,
-		&:hover {
-			background: transparent;
-			border: 0;
-			color: inherit;
-		}
-		cursor: pointer;
-		padding: $_gutter;
-		padding-right: $_gutter * 1.5;
-		margin-top: -$_gutter;
-		margin-bottom: -$_gutter;
-		margin-right: -$_gutter;
-		float: right;
-	}
+}
+
+.alert {
+	  $_gutter: $gutter;
+
+	  position: relative;
+	  padding: $alert-padding-y $alert-padding-x;
+	  margin-bottom: $alert-margin-bottom;
+	  border: $alert-border-width solid transparent;
+    border-radius: $alert-border-radius;
+
+	  a {
+		    font-weight: $alert-link-font-weight;
+	  }
+	  margin-top: $_gutter;
+	  margin-bottom: $_gutter;
+	  padding: $gutter;
+
+	  &__close-btn {
+		    &,
+		    &:active,
+		    &:not(:disabled):not(.disabled):active, // bootstrap selector is dumb and too specific...
+		    &:focus,
+		    &:hover {
+			      background: transparent;
+			      border: 0;
+			      color: inherit;
+		    }
+		    cursor: pointer;
+		    padding: $_gutter;
+		    padding-right: $_gutter * 1.5;
+		    margin-top: -$_gutter;
+		    margin-bottom: -$_gutter;
+		    margin-right: -$_gutter;
+		    float: right;
+	  }
+
+    @each $color, $value in $theme-colors {
+	      &--#{$color} {
+		        @include alert-variant(theme-color-level($color, $alert-bg-level), theme-color-level($color, $alert-border-level), theme-color-level($color, $alert-color-level));
+	      }
+    }
 }

@@ -16,6 +16,7 @@ $fa-icons: (
 	sort: "\f0dc",
 	times: "\f00d",
 	trash-alt: "\f2ed",
+  check: "\f00c"
 );
 
 // Used only for @extending
@@ -64,4 +65,3 @@ $fa-icons: (
 	@include fa-ize($char, before);
 	@extend ._fa-ize-replace;
 }
-

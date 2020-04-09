@@ -13,18 +13,3 @@ body {
     flex-grow: 1;
   }
 }
-
-body > section {
-  padding-left: $gutter;
-  padding-right: $gutter;
-  max-width: $container-max-width;
-}
-
-// Using `:not(.print-everything)` to add weight to the rule.
-@media print {
-  footer, header {
-    body:not(.print-everything) > & {
-      display: none;
-    }
-  }
-}

@@ -1,0 +1,130 @@
+.datagrid {
+    width: 100%;
+    margin-bottom: $gutter;
+
+    @media print {
+        border: 1px solid $body-color;
+    }
+
+
+    &__row {
+	      &:hover, &:focus {
+		        background: $gray-300;
+	      }
+    }
+
+
+    &__cell, &__header-cell {
+        padding: $gutter * 0.75;
+
+	      // Makes link-only cell all-clickable
+	      &:not(&--action) > a:first-child:last-child {
+		        display: block;
+		        margin: -$gutter * 0.75;
+		        padding: $gutter * 0.75;
+	      }
+    }
+
+    @media screen {
+        &__header-cell {
+            color: $body-bg;
+            background-color: $body-color;
+        }
+    }
+
+    @media print {
+        &__header-cell {
+            font-weight: bold;
+        }
+
+        &__header {
+            & &-cell {
+                border-bottom: 2px solid $body-color;
+            }
+        }
+    }
+
+
+    &__cell {
+        border: 0;
+    }
+
+    &__body:not(:last-child) &__cell,
+    &__body &__row:not(:last-child) &__cell {
+        border-bottom: 1px solid $gray-300;
+    }
+
+    &__header &__header-cell {
+        text-align: left;
+    }
+
+    &__header--action, &__cell--action {
+        padding-right: 0;
+        @media print {
+            display: none;
+        }
+		    // Actions columns are made as small as needed...
+		    // While ensuring words don't wrap.
+		    // All under the assumption they'll be made buttons
+		    // with pictograms in CSS.
+		    // (When doing so, please add a `title` attribute to the links)
+		    width: 0.1%;
+		    white-space: nowrap;
+    }
+    &__header-cell {
+        text-align: center;
+    }
+
+}
+
+.action {
+		@include button;
+		margin-left: 0;
+		margin-right: 0;
+		min-width: $gutter * 2.5;
+
+    //color
+    &--approve,
+    &--activate {
+        @include button-type(success);
+    }
+
+    &--delete,
+    &--exclude,
+    &--include,
+    &--disactivate,
+    &--deactivate,
+    {
+		    @include button-type(danger);
+    }
+    &--edit {
+		    @include button-type(primary);
+    }
+
+
+    //icon
+    &--approve,
+    &--activate {
+		    @include fa-ize-replace("check");
+    }
+
+    &--delete {
+		    @include fa-ize-replace("trash-alt");
+    }
+    &--edit {
+		    @include fa-ize-replace("edit");
+    }
+    &--show {
+		    @include fa-ize-replace("eye");
+    }
+
+    &--exclude,
+    &--disactivate,
+    &--deactivate {
+		    @include fa-ize-replace("sign-out-alt");
+    }
+
+    &--include {
+		    @include fa-ize-replace("sign-in-alt");
+    }
+}

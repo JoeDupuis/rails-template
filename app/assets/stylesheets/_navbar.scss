@@ -1,208 +1,216 @@
 $nav-height: 2.45rem + $gutter !default;
 
 @keyframes navbar-activation {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-// Visual styles for the navbars
-body > header {
-  background: $gray-300;
-
-  &, a {
-    text-decoration: none;
-    color: scale-color($black, $lightness: 50%);
-    &.is-active, &:active, &:hover, &:focus {
-      color: $black;
-    }
-  }
-  a {
-    position: relative;
-    @include responsive-min(md) {
-      &::after {
-        $_size: 2px;
-        margin: auto;
-        position: absolute;
-        content: "";
-        display: block;
-        top: $nav-height;
-        left: 0;
-        right: 0;
-        border-bottom: $_size solid $color-brand;
-        margin-top: -$_size;
-        transition: width 0;
+    from {
         width: 0;
-      }
-      &.is-active {
-        &::after {
-          transition: width ease-out 0.5s;
-          width: 100%;
-        }
-      }
-      &.is-current {
-        &::after {
-          // Hmm, turbolinks replaces the DOM, so there's no actual transition happening...
-          // So let's cheat and always activate this on the current link.
-          animation-name: navbar-activation;
-          animation-duration: 0.5s;
-          animation-timing-function: ease-out;
-        }
-      }
     }
-  }
-
-  h1 {
-    &, a {
-      color: $navbar-hl-color;
-      display: block;
-      padding: 0;
-      line-height: $nav-height;
+    to {
+        width: 100%;
     }
-    font-size: 1.125rem;
-    font-weight: inherit;
-  }
-
-  .navbar--main {
-    background: $navbar-bg-color;
-    &, a {
-      color: $navbar-fg-color;
-      &.is-active, &:active, &:hover, &:focus {
-        color: $navbar-ac-color;
-      }
-    }
-  }
 }
 
-// Structural styles for the navbars
-body > header {
-  // Lists in the navbar always are simplified
-  ul, ul > li {
-    margin: 0;
-    list-style-type: none;
-  }
-
-  a {
-    display: block;
-    padding-left: $gutter / 2;
-    padding-right: $gutter / 2;
-  }
-
-  // Narrow browsers structural rules
-  @include responsive-max(sm) {
-    nav {
-      padding: $gutter / 2;
-    }
-    a {
-      display: block;
-      padding-top: $gutter / 2;
-      padding-bottom: $gutter / 2;
-    }
-  }
-
-  // Wide browsers structural rules
-  @include responsive-min(md) {
-    nav {
-      padding: 0;
-      padding-right: $gutter;
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      height: $nav-height;
-      line-height: $nav-height;
-      white-space: nowrap;
-
-      & > * {
-        flex-grow: 0;
-        &:last-child:not(:first-child) {
-          flex-grow: 1;
-          & {
-            justify-content: flex-end;
-          }
-        }
-      }
-    }
-
-    * {
-      line-height: inherit;
-    }
-
-    // nav > * {
-      //   display: inline-block;
-      //   vertical-align: top;
-    // }
-    ul {
-      display: flex;
-    }
-  }
-}
-
-// Structural collapsible menu styles
 .menu {
-  position: relative;
-  @include responsive-max(sm) {
-    .menu__collapse-area {
-      overflow: hidden;
+    position: relative;
+    background: $gray-300;
+    @include responsive-max(sm) {
+        .menu__collapse-area {
+            overflow: hidden;
+        }
+        &.is-collapsed {
+            .menu__collapse-area {
+                height: 0;
+            }
+        }
     }
-    &.is-collapsed {
-      .menu__collapse-area {
-        height: 0;
-      }
-    }
-  }
 
-  .menu__close {
-    // Not shown on wide responsive layouts.
+    &__brand {
+        &, a {
+            display: block;
+            padding: 0;
+            line-height: $nav-height;
+        }
+        font-size: 1.125rem;
+        font-weight: inherit;
+
+	      $_width: 1320 / 956 * $nav-height;
+	      background: white;
+	      text-indent: -999px;
+	      background-image: image-url("logo.png");
+	      background-size: contain;
+	      background-repeat: no-repeat;
+	      background-position: center center;
+	      height: $nav-height;
+	      margin: 0;
+	      @include responsive-max(sm) {
+		        background-position: 5px center;
+            background-size: auto 50%;
+	      }
+	      @include responsive-min(md) {
+		        float: left;
+		        width: $_width;
+		        min-width: $_width;
+	      }
+    }
+
+    &__close {
+        // Not shown on wide responsive layouts.
+        @include responsive-min(md) {
+            display: none;
+        }
+        position: absolute;
+        display: block;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        height: $nav-height;
+        width: $nav-height;
+        z-index: 999;
+
+        // Resets appearance
+        -webkit-appearance: none;
+        border:none;
+        background-image:none;
+        background-color:transparent;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        color: $color-brand-contrast;
+        background: $color-brand;
+
+        // Desired look
+        &:hover, &:focus, &:active {
+            background-color: scale-color($color-brand, $lightness: 30%);
+            outline: 0;
+        }
+
+		    @include fa-ize("times");
+        // Collapsed
+        &:checked {
+            @include fa-ize("bars");
+        }
+
+        &::before {
+            display: block;
+            line-height: $nav-height;
+            width: 100%;
+            text-align: center;
+            font-size: $nav-height * 0.6;
+        }
+    }
+
+    @media print {
+        body:not(.print-everything) > & {
+            display: none;
+        }
+    }
+
+}
+
+
+.navbar {
+    &--main {
+        background: $navbar-bg-color;
+        .nav-links__link {
+            color: $navbar-fg-color;
+            &--active, &:active, &:hover, &:focus {
+                color: $navbar-ac-color;
+            }
+        }
+    }
+
+    @include responsive-max(sm) {
+        padding: $gutter / 2;
+    }
+
     @include responsive-min(md) {
-      display: none;
+        padding: 0;
+        padding-right: $gutter;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        height: $nav-height;
+        line-height: $nav-height;
+        white-space: nowrap;
+
+        & > * {
+            flex-grow: 0;
+            &:last-child:not(:first-child) {
+                flex-grow: 1;
+                & {
+                    justify-content: flex-end;
+                }
+            }
+        }
+
+        * {
+            line-height: inherit;
+        }
+
+        ul {
+            display: flex;
+        }
     }
-    position: absolute;
-    display: block;
-    top: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    height: $nav-height;
-    width: $nav-height;
-    z-index: 999;
-  }
 }
 
-// Visual menu styles
-.menu {
-  .menu__close {
-    // Resets appearance
-    -webkit-appearance: none;
-    border:none;
-    background-image:none;
-    background-color:transparent;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    color: $white;
-    background: $color-brand;
 
-    // Desired look
-    &:hover, &:focus, &:active {
-      background-color: scale-color($color-brand, $lightness: 30%);
-      outline: 0;
+.nav-links {
+    &, &__item {
+        margin: 0;
+        list-style-type: none;
     }
 
-		@include fa-ize("times");
-    // Collapsed
-    &:checked {
-      @include fa-ize("bars");
-    }
+    &__link {
+        position: relative;
+        text-decoration: none;
+        display: block;
+        padding-left: $gutter / 2;
+        padding-right: $gutter / 2;
 
-    &::before {
-      display: block;
-      line-height: $nav-height;
-      width: 100%;
-      text-align: center;
-      font-size: $nav-height * 0.6;
+        color: scale-color($black, $lightness: 50%);
+        &--active, &:active, &:hover, &:focus {
+            color: $black;
+        }
+
+        @include responsive-max(sm) {
+            padding: $gutter / 2;
+            display: block;
+            padding-top: $gutter / 2;
+            padding-bottom: $gutter / 2;
+        }
+
+        @include responsive-min(md) {
+            &::after {
+                $_size: 2px;
+                margin: auto;
+                position: absolute;
+                content: "";
+                display: block;
+                top: $nav-height;
+                left: 0;
+                right: 0;
+                border-bottom: $_size solid $color-brand;
+                margin-top: -$_size;
+                transition: width 0;
+                width: 0;
+            }
+
+            &--active {
+                &::after {
+                    transition: width ease-out 0.5s;
+                    width: 100%;
+                }
+            }
+
+            &--current {
+                &::after {
+                    // Hmm, turbolinks replaces the DOM, so there's no actual transition happening...
+                    // So let's cheat and always activate this on the current link.
+                    animation-name: navbar-activation;
+                    animation-duration: 0.5s;
+                    animation-timing-function: ease-out;
+                }
+            }
+        }
     }
-  }
 }

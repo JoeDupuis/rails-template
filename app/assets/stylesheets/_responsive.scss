@@ -52,7 +52,7 @@ $breakpoints-max: (
   xx: 100vw, // "100%"
 );
 
-@mixin responsive-at($breakpoint) { 
+@mixin responsive-at($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
     @media
       screen and
@@ -70,7 +70,7 @@ $breakpoints-max: (
   }
 }
 
-@mixin responsive-between($min, $max) { 
+@mixin responsive-between($min, $max) {
   @if map-has-key($breakpoints, $min) and map-has-key($breakpoints, $max) {
     @media
       screen and
@@ -88,7 +88,7 @@ $breakpoints-max: (
   }
 }
 
-@mixin responsive-min($breakpoint) { 
+@mixin responsive-min($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
     @media screen and (min-width: #{map-get($breakpoints-min, $breakpoint)}) {
       @content;
@@ -101,7 +101,7 @@ $breakpoints-max: (
   }
 }
 
-@mixin responsive-max($breakpoint) { 
+@mixin responsive-max($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
     @media screen and (max-width: #{map-get($breakpoints-max, $breakpoint)}) {
       @content;
