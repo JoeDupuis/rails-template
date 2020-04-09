@@ -1,0 +1,9 @@
+<tr>
+  <% grid.html_columns(*options[:columns]).each do |column| %>
+    <% unless column.name == :actions %>
+      <th class="<%= datagrid_column_classes(grid, column) %>">
+        <%= column.header %>
+      </th>
+    <% end %>
+  <% end %>
+</tr>
