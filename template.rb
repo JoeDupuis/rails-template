@@ -60,7 +60,7 @@ def setup_base_app
   copy_file "app/helpers/application_helper.rb"
   template "config/database.yml.tt"
   template "README.md.tt"
-  copy_file "config/initializers/generators.rb"
+  directory "config/initializers"
 
   FileUtils.touch 'dev_notes.md'
 end
