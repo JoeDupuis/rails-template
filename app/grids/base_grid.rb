@@ -32,7 +32,7 @@ class BaseGrid
   def self.date_column(name, *args)
     column(name, *args) do |model|
       format(block_given? ? yield : model.send(name)) do |date|
-        date.strftime("%m/%d/%Y")
+        date.strftime("%d/%m/%Y")
       end
     end
   end
